@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 function ListGroup() {
   let listItems = [
     "Cras justo odio",
@@ -7,6 +9,8 @@ function ListGroup() {
     "Vestibulum at eros",
   ];
 
+  const [selectedIndex, setSelectedIndex] = useState(-1);
+
   return (
     <>
       <h1>List Title</h1>
@@ -15,10 +19,12 @@ function ListGroup() {
         {listItems.map((listItem, index) => (
           <li
             key={listItem}
-            onClick={() =>
-              console.log(`Selected list item '${listItem}' at index ${index}.`)
+            onClick={() => setSelectedIndex(index)}
+            className={
+              selectedIndex === index
+                ? "list-group-item list-group-item-action active"
+                : "list-group-item list-group-item-action"
             }
-            className="list-group-item list-group-item-action"
           >
             {listItem}
           </li>
